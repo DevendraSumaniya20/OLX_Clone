@@ -13,8 +13,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     position: 'absolute',
     bottom: moderateScale(0),
-    borderRadius: moderateScale(30),
-    marginBottom: moderateScale(20),
   },
   tab: {
     height: '100%',
