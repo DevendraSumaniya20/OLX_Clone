@@ -10,4 +10,5 @@ export default {
   Car: require('../assets/images/car.png'),
   Bikes: require('../assets/images/bike.png'),
   Furniture: require('../assets/images/household.png'),
+  NoImage: require('../assets/images/noImage.png'),
 };
