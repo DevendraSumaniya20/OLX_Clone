@@ -11,4 +11,5 @@ export default {
   Bikes: require('../assets/images/bike.png'),
   Furniture: require('../assets/images/household.png'),
   NoImage: require('../assets/images/noImage.png'),
+  PlaceHolder: require('../assets/images/PlaceHolder.jpeg'),
 };

@@ -19,7 +19,11 @@ const HomeScreen = () => {
       ) : selectedTab == 1 ? (
         <Search />
       ) : selectedTab == 2 ? (
-        <Add />
+        <Add
+          onPost={() => {
+            setSelectedTab(0);
+          }}
+        />
       ) : selectedTab == 3 ? (
         <Wishlist />
       ) : (
