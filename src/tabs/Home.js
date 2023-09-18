@@ -9,22 +9,43 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {moderateScale, scale} from 'react-native-size-matters';
 import ImagePath from '../constants/ImagePath';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import NavigationString from '../constants/NavigationString';
+import {addToWishList} from '../redux/WishListSlice';
 
 const Home = () => {
   const navigation = useNavigation();
   const items = useSelector(state => state.post);
+  const dispatch = useDispatch();
+
+  const [text, setText] = useState('');
+  const [itemList, setItemList] = useState(items.data);
+
+  const filterList = txt => {
+    let tempList = items.data;
+    let temp = tempList.filter(item => {
+      return item.name.toLowerCase().match(txt.toLowerCase());
+    });
+    setItemList(temp);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.logo}>OLX</Text>
       <View style={styles.searchBox}>
-        <TextInput placeholder="Search items here" style={styles.input} />
+        <TextInput
+          placeholder="Search items here"
+          style={styles.input}
+          value={text}
+          onChangeText={txt => {
+            setText(txt);
+            filterList(txt);
+          }}
+        />
         <Image source={ImagePath.Search} style={styles.icon} />
       </View>
       <View style={{justifyContent: 'center'}}>
@@ -49,7 +70,7 @@ const Home = () => {
               <TouchableOpacity
                 onPress={() => {
                   navigation.navigate(NavigationString.ITEMBYCATEGORY, {
-                    categoty: item.title,
+                    category: item.title,
                   });
                 }}
                 style={{
@@ -79,7 +100,7 @@ const Home = () => {
           pagingEnabled
           showsHorizontalScrollIndicator={false}
           scrollEventThrottle={16}
-          data={items.data}
+          data={itemList}
           renderItem={({item, index}) => {
             return (
               <TouchableOpacity style={styles.item}>
@@ -89,6 +110,13 @@ const Home = () => {
                   <Text style={styles.desc}>{item.desc}</Text>
                   <Text style={styles.price}>INR.{item.price}</Text>
                 </View>
+                <TouchableOpacity
+                  style={styles.wishList}
+                  onPress={() => {
+                    dispatch(addToWishList(item));
+                  }}>
+                  <Image source={ImagePath.Heart} style={styles.icon} />
+                </TouchableOpacity>
               </TouchableOpacity>
             );
           }}
@@ -175,5 +203,10 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginLeft: moderateScale(10),
     color: 'green',
+  },
+  wishList: {
+    position: 'absolute',
+    right: moderateScale(20),
+    top: moderateScale(20),
   },
 });
