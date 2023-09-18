@@ -16,6 +16,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import NavigationString from '../constants/NavigationString';
 import {addToWishList} from '../redux/WishListSlice';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const Home = () => {
   const navigation = useNavigation();
@@ -24,6 +25,7 @@ const Home = () => {
 
   const [text, setText] = useState('');
   const [itemList, setItemList] = useState(items.data);
+  const [isLike, setIsLike] = useState(false);
 
   const filterList = txt => {
     let tempList = items.data;
@@ -114,8 +116,20 @@ const Home = () => {
                   style={styles.wishList}
                   onPress={() => {
                     dispatch(addToWishList(item));
+                    {
+                      if (isLike == true) {
+                        setIsLike(false);
+                      } else {
+                        setIsLike(true);
+                      }
+                    }
                   }}>
-                  <Image source={ImagePath.Heart} style={styles.icon} />
+                  {/* <Image source={ImagePath.Heart} style={styles.icon} /> */}
+                  <AntDesign
+                    name={!isLike ? 'hearto' : 'heart'}
+                    size={25}
+                    color={!isLike ? 'black' : 'red'}
+                  />
                 </TouchableOpacity>
               </TouchableOpacity>
             );
@@ -177,9 +191,10 @@ const styles = StyleSheet.create({
   item: {
     width: moderateScale(350),
     height: moderateScale(100),
-    backgroundColor: '#eee',
+    backgroundColor: '#fff',
+
     marginTop: moderateScale(5),
-    alignSelf: 'center',
+    alignItems: 'center',
     flexDirection: 'row',
     borderRadius: moderateScale(20),
     marginHorizontal: moderateScale(10),
@@ -188,10 +203,11 @@ const styles = StyleSheet.create({
     width: moderateScale(80),
     height: moderateScale(80),
     marginLeft: moderateScale(20),
+    borderRadius: moderateScale(10),
   },
   name: {
     fontSize: scale(18),
-    fontWeight: '600',
+    fontWeight: '900',
     marginLeft: moderateScale(10),
   },
   desc: {
@@ -202,11 +218,11 @@ const styles = StyleSheet.create({
     fontSize: scale(18),
     fontWeight: '600',
     marginLeft: moderateScale(10),
-    color: 'green',
+    color: '#00ff96',
   },
   wishList: {
     position: 'absolute',
     right: moderateScale(20),
-    top: moderateScale(20),
+    top: moderateScale(35),
   },
 });
