@@ -13,8 +13,11 @@ import React from 'react';
 import {moderateScale, scale} from 'react-native-size-matters';
 import ImagePath from '../constants/ImagePath';
 import {useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
+import NavigationString from '../constants/NavigationString';
 
 const Home = () => {
+  const navigation = useNavigation();
   const items = useSelector(state => state.post);
 
   return (
@@ -35,15 +38,20 @@ const Home = () => {
           scrollEventThrottle={16}
           data={[
             {title: 'Car', icon: ImagePath.Car},
-            {title: 'Bikes', icon: ImagePath.Bikes},
-            {title: 'Laptops', icon: ImagePath.Laptop},
-            {title: 'Mobiles', icon: ImagePath.SmartPhone},
-            {title: 'Furnitures', icon: ImagePath.Furniture},
+            {title: 'Bike', icon: ImagePath.Bikes},
+            {title: 'Laptop', icon: ImagePath.Laptop},
+            {title: 'Mobile', icon: ImagePath.SmartPhone},
+            {title: 'Furniture', icon: ImagePath.Furniture},
             {title: 'House', icon: ImagePath.House},
           ]}
           renderItem={({item, index}) => {
             return (
               <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate(NavigationString.ITEMBYCATEGORY, {
+                    categoty: item.title,
+                  });
+                }}
                 style={{
                   width: Dimensions.get('window').width / 3,
                   height: 100,
@@ -79,7 +87,7 @@ const Home = () => {
                 <View>
                   <Text style={styles.name}>{item.name}</Text>
                   <Text style={styles.desc}>{item.desc}</Text>
-                  <Text style={styles.price}>{item.price}</Text>
+                  <Text style={styles.price}>INR.{item.price}</Text>
                 </View>
               </TouchableOpacity>
             );

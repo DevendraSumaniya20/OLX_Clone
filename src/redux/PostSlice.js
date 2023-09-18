@@ -9,13 +9,6 @@ export const PostSlice = createSlice({
     addPost(state, action) {
       state.data.push(action.payload);
     },
-    getItemsByCategory(state, action) {
-      let tempdata = [];
-
-      tempdata = state.data.filter(item => {
-        return item.category == action.payload;
-      });
-    },
   },
 });
 

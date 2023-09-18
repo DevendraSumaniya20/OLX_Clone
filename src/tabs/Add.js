@@ -12,7 +12,7 @@ import {
 import React, {useState} from 'react';
 import {moderateScale, scale} from 'react-native-size-matters';
 import ImagePath from '../constants/ImagePath';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import {launchCamera} from 'react-native-image-picker';
 import {useDispatch, useSelector} from 'react-redux';
 import {addPost} from '../redux/PostSlice';
 
