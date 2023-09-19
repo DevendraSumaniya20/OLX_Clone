@@ -109,7 +109,11 @@ const Home = () => {
                 <Image source={{uri: item.image}} style={styles.itemImage} />
                 <View>
                   <Text style={styles.name}>{item.name}</Text>
-                  <Text style={styles.desc}>{item.desc}</Text>
+                  <Text style={styles.desc}>
+                    {item.desc.length > 25
+                      ? item.desc.slice(0, 25) + '...'
+                      : item.desc}
+                  </Text>
                   <Text style={styles.price}>INR.{item.price}</Text>
                 </View>
                 <TouchableOpacity
