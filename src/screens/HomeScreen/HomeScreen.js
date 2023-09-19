@@ -27,7 +27,17 @@ const HomeScreen = () => {
       ) : selectedTab == 3 ? (
         <Wishlist />
       ) : (
-        <User />
+        <User
+          onGotoHome={() => {
+            setSelectedTab(0);
+          }}
+          onGotoSearch={() => {
+            setSelectedTab(1);
+          }}
+          onGotoWishList={() => {
+            setSelectedTab(3);
+          }}
+        />
       )}
       <View style={styles.bottomTab}>
         <TouchableOpacity

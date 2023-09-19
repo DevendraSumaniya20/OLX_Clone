@@ -17,4 +17,5 @@ export default {
   Help: require('../assets/images/help.png'),
   Setting: require('../assets/images/setting.png'),
   Blog: require('../assets/images/blog.png'),
+  ProfilePicture: require('../assets/images/asta.jpg'),
 };

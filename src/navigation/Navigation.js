@@ -7,6 +7,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import SplashScreen from '../screens/SplashScreen';
 import NavigationString from '../constants/NavigationString';
 import ItemByCategoryScreen from '../screens/itemsByCategoryScreen/ItemByCategoryScreen';
+import Home from '../tabs/Home';
 
 const Stack = createStackNavigator();
 
@@ -24,6 +25,11 @@ const Navigation = () => {
           component={HomeScreen}
           options={{headerShown: false}}
         />
+        {/* <Stack.Screen
+          name={NavigationString.HOMETAB}
+          component={Home}
+          options={{headerShown: false}}
+        /> */}
         <Stack.Screen
           name={NavigationString.ITEMBYCATEGORY}
           component={ItemByCategoryScreen}

@@ -7,11 +7,23 @@ import {
   scale,
 } from 'react-native-size-matters';
 
-const User = () => {
+const User = ({onGotoHome, onGotoSearch, onGotoWishList}) => {
+  const goToHomeScreen = () => {
+    onGotoHome();
+  };
+
+  const goToSearchScreen = () => {
+    onGotoSearch();
+  };
+
+  const goToWishScreen = () => {
+    onGotoWishList();
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
-        <Image source={ImagePath.NoImage} style={styles.imageStyle} />
+        <Image source={ImagePath.ProfilePicture} style={styles.imageStyle} />
       </View>
       <View style={styles.TextContainer}>
         <Text style={styles.userNameText}>Devendra Sumaniya</Text>
@@ -19,21 +31,30 @@ const User = () => {
       <View style={styles.lineContainer}></View>
       <View style={styles.boxmainContainer}>
         <View style={styles.box1Container}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              goToHomeScreen();
+            }}>
             <Image source={ImagePath.Home} style={styles.box1ContainerImage} />
             <Text style={styles.box1ContainerText}>Home</Text>
             <Text style={styles.box1ContainerText2}>my Post</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.box1Container}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              goToSearchScreen();
+            }}>
             <Image source={ImagePath.Home} style={styles.box1ContainerImage} />
             <Text style={styles.box1ContainerText}>Search</Text>
             <Text style={styles.box1ContainerText2}>My Search</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.box1Container}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              goToWishScreen();
+            }}>
             <Image source={ImagePath.Home} style={styles.box1ContainerImage} />
             <Text style={styles.box1ContainerText}>WishList</Text>
             <Text style={styles.box1ContainerText2}>my WishList</Text>
@@ -42,44 +63,57 @@ const User = () => {
       </View>
       {/* Bottom container */}
       <View style={styles.boxmainContainer2}>
-        <View style={styles.box2Container}>
-          <Image source={ImagePath.Wallet} style={styles.box1ContainerImage} />
-          <View>
-            <Text>Packages</Text>
-            <Text>Pakages, Order, and Billing Invoices</Text>
+        <TouchableOpacity>
+          <View style={styles.box2Container}>
+            <Image
+              source={ImagePath.Wallet}
+              style={styles.box1ContainerImage}
+            />
+            <View>
+              <Text>Packages</Text>
+              <Text>Pakages, Order, and Billing Invoices</Text>
+            </View>
           </View>
-        </View>
-
-        <View style={styles.box2Container}>
-          <Image source={ImagePath.Blog} style={styles.box1ContainerImage} />
-          <View>
-            <Text>Madara</Text>
-            <Text>Latest news , articles and more</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <View style={styles.box2Container}>
+            <Image source={ImagePath.Blog} style={styles.box1ContainerImage} />
+            <View>
+              <Text>Madara</Text>
+              <Text>Latest news , articles and more</Text>
+            </View>
           </View>
-        </View>
-
-        <View style={styles.box2Container}>
-          <Image source={ImagePath.Help} style={styles.box1ContainerImage} />
-          <View>
-            <Text>Help and Support</Text>
-            <Text>Help Center and Legal terms</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <View style={styles.box2Container}>
+            <Image source={ImagePath.Help} style={styles.box1ContainerImage} />
+            <View>
+              <Text>Help and Support</Text>
+              <Text>Help Center and Legal terms</Text>
+            </View>
           </View>
-        </View>
-
-        <View style={styles.box2Container}>
-          <Image source={ImagePath.Setting} style={styles.box1ContainerImage} />
-          <View>
-            <Text>Setting</Text>
-            <Text>Prifile information and Privacy</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <View style={styles.box2Container}>
+            <Image
+              source={ImagePath.Setting}
+              style={styles.box1ContainerImage}
+            />
+            <View>
+              <Text>Setting</Text>
+              <Text>Prifile information and Privacy</Text>
+            </View>
           </View>
-        </View>
-        <View style={styles.box2Container}>
-          <Image source={ImagePath.Bell} style={styles.box1ContainerImage} />
-          <View>
-            <Text>Notification</Text>
-            <Text>Notification Setting</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <View style={styles.box2Container}>
+            <Image source={ImagePath.Bell} style={styles.box1ContainerImage} />
+            <View>
+              <Text>Notification</Text>
+              <Text>Notification Setting</Text>
+            </View>
           </View>
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -133,6 +167,7 @@ const styles = StyleSheet.create({
     padding: moderateScale(10),
   },
   box1ContainerImage: {
+    alignSelf: 'center',
     width: moderateScale(30),
     height: moderateScale(30),
   },
@@ -140,13 +175,13 @@ const styles = StyleSheet.create({
     fontSize: scale(14),
     fontWeight: '700',
     color: '#000',
-    alignItems: 'center',
+    textAlign: 'center',
   },
   box1ContainerText2: {
     fontSize: scale(12),
     fontWeight: '400',
     color: 'gray',
-    alignItems: 'center',
+    textAlign: 'center',
   },
 
   boxmainContainer2: {
