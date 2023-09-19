@@ -12,4 +12,9 @@ export default {
   Furniture: require('../assets/images/household.png'),
   NoImage: require('../assets/images/noImage.png'),
   PlaceHolder: require('../assets/images/PlaceHolder.jpeg'),
+  Wallet: require('../assets/images/wallet.png'),
+  Bell: require('../assets/images/bell.png'),
+  Help: require('../assets/images/help.png'),
+  Setting: require('../assets/images/setting.png'),
+  Blog: require('../assets/images/blog.png'),
 };
