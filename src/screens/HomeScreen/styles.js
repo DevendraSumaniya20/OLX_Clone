@@ -9,10 +9,9 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 70,
     justifyContent: 'space-around',
-    backgroundColor: '#258',
     flexDirection: 'row',
     position: 'absolute',
-    bottom: moderateScale(0),
+    bottom: moderateScale(2),
   },
   tab: {
     height: '100%',

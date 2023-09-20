@@ -8,105 +8,112 @@ import Search from '../../tabs/Search';
 import Add from '../../tabs/Add';
 import Wishlist from '../../tabs/Wishlist';
 import User from '../../tabs/User';
+import LinearGradient from 'react-native-linear-gradient';
 
 const HomeScreen = () => {
   const [selectedTab, setSelectedTab] = useState(0);
 
   return (
-    <View style={styles.container}>
-      {selectedTab == 0 ? (
-        <Home />
-      ) : selectedTab == 1 ? (
-        <Search />
-      ) : selectedTab == 2 ? (
-        <Add
-          onPost={() => {
-            setSelectedTab(0);
-          }}
-        />
-      ) : selectedTab == 3 ? (
-        <Wishlist />
-      ) : (
-        <User
-          onGotoHome={() => {
-            setSelectedTab(0);
-          }}
-          onGotoSearch={() => {
-            setSelectedTab(1);
-          }}
-          onGotoWishList={() => {
-            setSelectedTab(3);
-          }}
-        />
-      )}
-      <View style={styles.bottomTab}>
-        <TouchableOpacity
-          style={styles.tab}
-          onPress={() => {
-            setSelectedTab(0);
-          }}>
-          <Image
-            source={ImagePath.Home}
-            style={[
-              styles.tabIcon,
-              {tintColor: selectedTab == 0 ? 'blue' : 'black'},
-            ]}
+    <LinearGradient
+      colors={['#d582ec', '#502eb6', '#0a043c', '#160962', '#64b1f9']}
+      style={styles.container}>
+      <View style={styles.container}>
+        {selectedTab == 0 ? (
+          <Home />
+        ) : selectedTab == 1 ? (
+          <Search />
+        ) : selectedTab == 2 ? (
+          <Add
+            onPost={() => {
+              setSelectedTab(0);
+            }}
           />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.tab}
-          onPress={() => {
-            setSelectedTab(1);
-          }}>
-          <Image
-            source={ImagePath.Search}
-            style={[
-              styles.tabIcon,
-              {tintColor: selectedTab == 1 ? 'blue' : 'black'},
-            ]}
+        ) : selectedTab == 3 ? (
+          <Wishlist />
+        ) : (
+          <User
+            onGotoHome={() => {
+              setSelectedTab(0);
+            }}
+            onGotoSearch={() => {
+              setSelectedTab(1);
+            }}
+            onGotoWishList={() => {
+              setSelectedTab(3);
+            }}
           />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.tab}
-          onPress={() => {
-            setSelectedTab(2);
-          }}>
-          <Image
-            source={ImagePath.Add}
-            style={[
-              styles.tabIcon,
-              {tintColor: selectedTab == 2 ? 'blue' : 'black'},
-            ]}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.tab}
-          onPress={() => {
-            setSelectedTab(3);
-          }}>
-          <Image
-            source={ImagePath.Heart}
-            style={[
-              styles.tabIcon,
-              {tintColor: selectedTab == 3 ? 'blue' : 'black'},
-            ]}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.tab}
-          onPress={() => {
-            setSelectedTab(4);
-          }}>
-          <Image
-            source={ImagePath.User}
-            style={[
-              styles.tabIcon,
-              {tintColor: selectedTab == 4 ? 'blue' : 'black'},
-            ]}
-          />
-        </TouchableOpacity>
+        )}
+
+        <View style={styles.bottomTab}>
+          <TouchableOpacity
+            style={styles.tab}
+            onPress={() => {
+              setSelectedTab(0);
+            }}>
+            <Image
+              source={ImagePath.Home}
+              style={[
+                styles.tabIcon,
+                {tintColor: selectedTab == 0 ? '#fff' : '#000'},
+              ]}
+            />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.tab}
+            onPress={() => {
+              setSelectedTab(1);
+            }}>
+            <Image
+              source={ImagePath.Search}
+              style={[
+                styles.tabIcon,
+                {tintColor: selectedTab == 1 ? '#fff' : '#000'},
+              ]}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.tab}
+            onPress={() => {
+              setSelectedTab(2);
+            }}>
+            <Image
+              source={ImagePath.Add}
+              style={[
+                styles.tabIcon,
+                {tintColor: selectedTab == 2 ? '#fff' : '#000'},
+              ]}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.tab}
+            onPress={() => {
+              setSelectedTab(3);
+            }}>
+            <Image
+              source={ImagePath.Heart}
+              style={[
+                styles.tabIcon,
+                {tintColor: selectedTab == 3 ? '#fff' : '#000'},
+              ]}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.tab}
+            onPress={() => {
+              setSelectedTab(4);
+            }}>
+            <Image
+              source={ImagePath.User}
+              style={[
+                styles.tabIcon,
+                {tintColor: selectedTab == 4 ? '#fff' : '#000'},
+              ]}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </LinearGradient>
   );
 };
 
