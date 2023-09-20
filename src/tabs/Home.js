@@ -17,6 +17,7 @@ import {useNavigation} from '@react-navigation/native';
 import NavigationString from '../constants/NavigationString';
 import {addToWishList} from '../redux/WishListSlice';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import color from '../constants/color';
 
 const Home = () => {
   const navigation = useNavigation();
@@ -41,6 +42,7 @@ const Home = () => {
       <View style={styles.searchBox}>
         <TextInput
           placeholder="Search items here"
+          placeholderTextColor={color.black}
           style={styles.input}
           value={text}
           onChangeText={txt => {
@@ -76,12 +78,14 @@ const Home = () => {
                   });
                 }}
                 style={{
-                  width: Dimensions.get('window').width / 3,
-                  height: 100,
+                  width: moderateScale(120),
+                  height: moderateScale(95),
                   justifyContent: 'center',
                   alignItems: 'center',
-                  backgroundColor: '#DEDEDE',
-                  margin: moderateScale(2),
+                  backgroundColor: color.white,
+                  marginHorizontal: moderateScale(4),
+                  marginVertical: moderateScale(4),
+                  borderRadius: moderateScale(16),
                 }}>
                 <Image
                   source={item.icon}
@@ -120,13 +124,7 @@ const Home = () => {
                   style={styles.wishList}
                   onPress={() => {
                     dispatch(addToWishList(item));
-                    {
-                      if (isLike == true) {
-                        setIsLike(false);
-                      } else {
-                        setIsLike(true);
-                      }
-                    }
+                    setIsLike(!true);
                   }}>
                   {/* <Image source={ImagePath.Heart} style={styles.icon} /> */}
                   <AntDesign
@@ -178,7 +176,7 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: scale(20),
     marginLeft: moderateScale(20),
-    color: 'black',
+    color: color.black,
     fontWeight: 'bold',
     marginTop: moderateScale(36),
     marginBottom: moderateScale(20),
@@ -191,12 +189,12 @@ const styles = StyleSheet.create({
     marginTop: moderateScale(10),
     fontSize: scale(16),
     fontWeight: '600',
+    color: color.black,
   },
   item: {
     width: moderateScale(350),
     height: moderateScale(100),
-    backgroundColor: '#fff',
-
+    backgroundColor: color.white,
     marginTop: moderateScale(5),
     alignItems: 'center',
     flexDirection: 'row',

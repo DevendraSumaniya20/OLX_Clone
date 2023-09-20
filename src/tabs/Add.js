@@ -10,11 +10,12 @@ import {
   ScrollView,
 } from 'react-native';
 import React, {useState} from 'react';
-import {moderateScale, scale} from 'react-native-size-matters';
+import {moderateScale, s, scale} from 'react-native-size-matters';
 import ImagePath from '../constants/ImagePath';
 import {launchCamera} from 'react-native-image-picker';
 import {useDispatch, useSelector} from 'react-redux';
 import {addPost} from '../redux/PostSlice';
+import color from '../constants/color';
 
 const Add = ({onPost}) => {
   const dispatch = useDispatch();
@@ -116,6 +117,7 @@ const Add = ({onPost}) => {
           autoComplete="off"
           autoCorrect={false}
           placeholder="Enter Item name"
+          placeholderTextColor={color.black}
           style={styles.input}
           value={name}
           onChangeText={txt => {
@@ -131,6 +133,7 @@ const Add = ({onPost}) => {
             setDesc(txt);
           }}
           placeholder="Enter Item Desc"
+          placeholderTextColor={color.black}
           style={[styles.input, {marginTop: moderateScale(10)}]}
         />
         <TextInput
@@ -142,11 +145,12 @@ const Add = ({onPost}) => {
             setPrice(txt);
           }}
           keyboardType="number-pad"
+          placeholderTextColor={color.black}
           placeholder="Enter Item Price"
           style={[styles.input, {marginTop: moderateScale(10)}]}
         />
 
-        <Text style={styles.Categorytitle}>category</Text>
+        <Text style={styles.Categorytitle}>category </Text>
 
         <TouchableOpacity
           onPress={() => {
@@ -157,10 +161,10 @@ const Add = ({onPost}) => {
             {
               justifyContent: 'center',
               marginTop: moderateScale(5),
-              borderColor: selectedCategory === 0 ? 'blue' : 'black',
+              borderColor: selectedCategory === 0 ? color.white : color.black,
             },
           ]}>
-          <Text>Car</Text>
+          <Text style={styles.categoryText}>Car</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
@@ -171,10 +175,10 @@ const Add = ({onPost}) => {
             {
               justifyContent: 'center',
               marginTop: moderateScale(5),
-              borderColor: selectedCategory === 1 ? 'blue' : 'black',
+              borderColor: selectedCategory === 1 ? color.white : color.black,
             },
           ]}>
-          <Text>Bike</Text>
+          <Text style={styles.categoryText}>Bike</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
@@ -185,10 +189,10 @@ const Add = ({onPost}) => {
             {
               justifyContent: 'center',
               marginTop: moderateScale(5),
-              borderColor: selectedCategory === 2 ? 'blue' : 'black',
+              borderColor: selectedCategory === 2 ? color.white : color.black,
             },
           ]}>
-          <Text>Laptop</Text>
+          <Text style={styles.categoryText}>Laptop</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
@@ -199,10 +203,10 @@ const Add = ({onPost}) => {
             {
               justifyContent: 'center',
               marginTop: moderateScale(5),
-              borderColor: selectedCategory === 3 ? 'blue' : 'black',
+              borderColor: selectedCategory === 3 ? color.white : color.black,
             },
           ]}>
-          <Text>Mobiles</Text>
+          <Text style={styles.categoryText}>Mobiles</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
@@ -213,10 +217,10 @@ const Add = ({onPost}) => {
             {
               justifyContent: 'center',
               marginTop: moderateScale(5),
-              borderColor: selectedCategory === 4 ? 'blue' : 'black',
+              borderColor: selectedCategory === 4 ? color.white : color.black,
             },
           ]}>
-          <Text>Furniture</Text>
+          <Text style={styles.categoryText}>Furniture</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
@@ -227,10 +231,10 @@ const Add = ({onPost}) => {
             {
               justifyContent: 'center',
               marginTop: moderateScale(5),
-              borderColor: selectedCategory === 5 ? 'blue' : 'black',
+              borderColor: selectedCategory === 5 ? color.white : color.black,
             },
           ]}>
-          <Text>House</Text>
+          <Text style={styles.categoryText}>House</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -261,11 +265,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: scale(20),
     color: '#000',
+    fontWeight: 'bold',
   },
 
   imageView: {
     width: '90%',
-    height: 130,
+    height: moderateScale(130),
     alignSelf: 'center',
     marginTop: moderateScale(20),
     resizeMode: 'contain',
@@ -278,6 +283,9 @@ const styles = StyleSheet.create({
     borderRadius: moderateScale(20),
     marginTop: moderateScale(50),
     paddingLeft: moderateScale(20),
+    color: color.white,
+    fontSize: scale(14),
+    borderColor: color.white,
   },
   button: {
     width: '90%',
@@ -287,7 +295,7 @@ const styles = StyleSheet.create({
     borderRadius: moderateScale(10),
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'blue',
+    backgroundColor: '#01d3fa',
     marginBottom: moderateScale(100),
   },
   posttext: {
@@ -296,9 +304,14 @@ const styles = StyleSheet.create({
     fontSize: scale(24),
   },
   Categorytitle: {
-    fontSize: scale(20),
-    color: '#000',
-    marginLeft: moderateScale(20),
-    marginTop: moderateScale(20),
+    fontSize: scale(26),
+    color: color.white,
+    margin: moderateScale(20),
+    fontWeight: 'bold',
+  },
+  categoryText: {
+    fontSize: scale(18),
+    textAlign: 'center',
+    fontWeight: '600',
   },
 });

@@ -15,7 +15,10 @@ const HomeScreen = () => {
 
   return (
     <LinearGradient
-      colors={['#d582ec', '#502eb6', '#0a043c', '#160962', '#64b1f9']}
+      start={{x: 0.0, y: 0.25}}
+      end={{x: 0.5, y: 1.0}}
+      locations={[0, 0.5, 0.6]}
+      colors={['#01d3fa', '#c74d97', '#e20c75']}
       style={styles.container}>
       <View style={styles.container}>
         {selectedTab == 0 ? (

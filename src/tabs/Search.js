@@ -1,6 +1,7 @@
 import {
   FlatList,
   Image,
+  SafeAreaView,
   StyleSheet,
   Text,
   TextInput,
@@ -12,6 +13,7 @@ import {useSelector} from 'react-redux';
 import {useRoute} from '@react-navigation/native';
 import {moderateScale, scale} from 'react-native-size-matters';
 import ImagePath from '../constants/ImagePath';
+import color from '../constants/color';
 
 const Search = () => {
   const items = useSelector(state => state?.post);
@@ -27,43 +29,46 @@ const Search = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.searchBox}>
-        <TextInput
-          placeholder="Search items here"
-          style={styles.input}
-          value={text}
-          onChangeText={txt => {
-            setText(txt);
-            filterList(txt);
-          }}
-        />
-        <Image source={ImagePath.Search} style={styles.icon} />
+    <SafeAreaView>
+      <View style={styles.container}>
+        <View style={styles.searchBox}>
+          <TextInput
+            placeholder="Search items here"
+            placeholderTextColor={color.black}
+            style={styles.input}
+            value={text}
+            onChangeText={txt => {
+              setText(txt);
+              filterList(txt);
+            }}
+          />
+          <Image source={ImagePath.Search} style={styles.icon} />
+        </View>
+        <View style={{marginTop: moderateScale(20)}}>
+          <FlatList
+            keyExtractor={(item, index) => index.toString()}
+            contentContainerStyle={{paddingBottom: 20}}
+            showsVerticalScrollIndicator={false}
+            pagingEnabled
+            showsHorizontalScrollIndicator={false}
+            scrollEventThrottle={16}
+            data={itemList}
+            renderItem={({item, index}) => {
+              return (
+                <TouchableOpacity style={styles.item}>
+                  <Image source={{uri: item.image}} style={styles.itemImage} />
+                  <View>
+                    <Text style={styles.name}>{item.name}</Text>
+                    <Text style={styles.desc}>{item.desc}</Text>
+                    <Text style={styles.price}>INR.{item.price}</Text>
+                  </View>
+                </TouchableOpacity>
+              );
+            }}
+          />
+        </View>
       </View>
-      <View style={{marginTop: moderateScale(20)}}>
-        <FlatList
-          keyExtractor={(item, index) => index.toString()}
-          contentContainerStyle={{paddingBottom: 20}}
-          showsVerticalScrollIndicator={false}
-          pagingEnabled
-          showsHorizontalScrollIndicator={false}
-          scrollEventThrottle={16}
-          data={itemList}
-          renderItem={({item, index}) => {
-            return (
-              <TouchableOpacity style={styles.item}>
-                <Image source={{uri: item.image}} style={styles.itemImage} />
-                <View>
-                  <Text style={styles.name}>{item.name}</Text>
-                  <Text style={styles.desc}>{item.desc}</Text>
-                  <Text style={styles.price}>INR.{item.price}</Text>
-                </View>
-              </TouchableOpacity>
-            );
-          }}
-        />
-      </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -97,6 +102,7 @@ const styles = StyleSheet.create({
   icon: {
     width: moderateScale(24),
     height: moderateScale(24),
+    tintColor: 'black',
   },
   heading: {
     fontSize: scale(20),
@@ -143,6 +149,6 @@ const styles = StyleSheet.create({
     fontSize: scale(18),
     fontWeight: '600',
     marginLeft: moderateScale(10),
-    color: 'green',
+    color: '#00ff96',
   },
 });

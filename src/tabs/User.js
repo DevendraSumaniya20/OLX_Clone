@@ -1,4 +1,11 @@
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import ImagePath from '../constants/ImagePath';
 import {
@@ -6,6 +13,7 @@ import {
   moderateVerticalScale,
   scale,
 } from 'react-native-size-matters';
+import color from '../constants/color';
 
 const User = ({onGotoHome, onGotoSearch, onGotoWishList}) => {
   const goToHomeScreen = () => {
@@ -21,101 +29,121 @@ const User = ({onGotoHome, onGotoSearch, onGotoWishList}) => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Image source={ImagePath.ProfilePicture} style={styles.imageStyle} />
-      </View>
-      <View style={styles.TextContainer}>
-        <Text style={styles.userNameText}>Devendra Sumaniya</Text>
-      </View>
-      <View style={styles.lineContainer}></View>
-      <View style={styles.boxmainContainer}>
-        <View style={styles.box1Container}>
-          <TouchableOpacity
-            onPress={() => {
-              goToHomeScreen();
-            }}>
-            <Image source={ImagePath.Home} style={styles.box1ContainerImage} />
-            <Text style={styles.box1ContainerText}>Home</Text>
-            <Text style={styles.box1ContainerText2}>my Post</Text>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
+        <View style={styles.imageContainer}>
+          <Image source={ImagePath.ProfilePicture} style={styles.imageStyle} />
+        </View>
+        <View style={styles.TextContainer}>
+          <Text style={styles.userNameText}>Devendra Sumaniya</Text>
+        </View>
+        <View style={styles.lineContainer}></View>
+        <View style={styles.boxmainContainer}>
+          <View style={styles.box1Container}>
+            <TouchableOpacity
+              onPress={() => {
+                goToHomeScreen();
+              }}>
+              <Image
+                source={ImagePath.Home}
+                style={styles.box1ContainerImage}
+              />
+              <Text style={styles.box1ContainerText}>Home</Text>
+              <Text style={styles.box1ContainerText2}>my Post</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.box1Container}>
+            <TouchableOpacity
+              onPress={() => {
+                goToSearchScreen();
+              }}>
+              <Image
+                source={ImagePath.Search}
+                style={styles.box1ContainerImage}
+              />
+              <Text style={styles.box1ContainerText}>Search</Text>
+              <Text style={styles.box1ContainerText2}>My Search</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.box1Container}>
+            <TouchableOpacity
+              onPress={() => {
+                goToWishScreen();
+              }}>
+              <Image
+                source={ImagePath.Heart}
+                style={styles.box1ContainerImage}
+              />
+              <Text style={styles.box1ContainerText}>WishList</Text>
+              <Text style={styles.box1ContainerText2}>my WishList</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        {/* Bottom container */}
+        <View style={styles.boxmainContainer2}>
+          <TouchableOpacity>
+            <View style={styles.box2Container}>
+              <Image
+                source={ImagePath.Wallet}
+                style={styles.box1ContainerImage}
+              />
+              <View>
+                <Text>Packages</Text>
+                <Text>Pakages, Order, and Billing Invoices</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <View style={styles.box2Container}>
+              <Image
+                source={ImagePath.Blog}
+                style={styles.box1ContainerImage}
+              />
+              <View>
+                <Text>Blog</Text>
+                <Text>Latest news , articles and more</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <View style={styles.box2Container}>
+              <Image
+                source={ImagePath.Help}
+                style={styles.box1ContainerImage}
+              />
+              <View>
+                <Text>Help and Support</Text>
+                <Text>Help Center and Legal terms</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <View style={styles.box2Container}>
+              <Image
+                source={ImagePath.Setting}
+                style={styles.box1ContainerImage}
+              />
+              <View>
+                <Text>Setting</Text>
+                <Text>Prifile information and Privacy</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <View style={styles.box2Container}>
+              <Image
+                source={ImagePath.Bell}
+                style={styles.box1ContainerImage}
+              />
+              <View>
+                <Text>Notification</Text>
+                <Text>Notification Setting</Text>
+              </View>
+            </View>
           </TouchableOpacity>
         </View>
-        <View style={styles.box1Container}>
-          <TouchableOpacity
-            onPress={() => {
-              goToSearchScreen();
-            }}>
-            <Image source={ImagePath.Home} style={styles.box1ContainerImage} />
-            <Text style={styles.box1ContainerText}>Search</Text>
-            <Text style={styles.box1ContainerText2}>My Search</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.box1Container}>
-          <TouchableOpacity
-            onPress={() => {
-              goToWishScreen();
-            }}>
-            <Image source={ImagePath.Home} style={styles.box1ContainerImage} />
-            <Text style={styles.box1ContainerText}>WishList</Text>
-            <Text style={styles.box1ContainerText2}>my WishList</Text>
-          </TouchableOpacity>
-        </View>
       </View>
-      {/* Bottom container */}
-      <View style={styles.boxmainContainer2}>
-        <TouchableOpacity>
-          <View style={styles.box2Container}>
-            <Image
-              source={ImagePath.Wallet}
-              style={styles.box1ContainerImage}
-            />
-            <View>
-              <Text>Packages</Text>
-              <Text>Pakages, Order, and Billing Invoices</Text>
-            </View>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <View style={styles.box2Container}>
-            <Image source={ImagePath.Blog} style={styles.box1ContainerImage} />
-            <View>
-              <Text>Madara</Text>
-              <Text>Latest news , articles and more</Text>
-            </View>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <View style={styles.box2Container}>
-            <Image source={ImagePath.Help} style={styles.box1ContainerImage} />
-            <View>
-              <Text>Help and Support</Text>
-              <Text>Help Center and Legal terms</Text>
-            </View>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <View style={styles.box2Container}>
-            <Image
-              source={ImagePath.Setting}
-              style={styles.box1ContainerImage}
-            />
-            <View>
-              <Text>Setting</Text>
-              <Text>Prifile information and Privacy</Text>
-            </View>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <View style={styles.box2Container}>
-            <Image source={ImagePath.Bell} style={styles.box1ContainerImage} />
-            <View>
-              <Text>Notification</Text>
-              <Text>Notification Setting</Text>
-            </View>
-          </View>
-        </TouchableOpacity>
-      </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -132,7 +160,7 @@ const styles = StyleSheet.create({
     marginTop: moderateScale(50),
     borderRadius: moderateScale(100),
     borderWidth: 5,
-    borderColor: '#0000ff',
+    borderColor: '#e20c75',
   },
   imageContainer: {
     alignItems: 'center',
@@ -170,18 +198,22 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     width: moderateScale(30),
     height: moderateScale(30),
+    tintColor: '#01d3fa',
+    marginBottom: moderateScale(4),
   },
   box1ContainerText: {
     fontSize: scale(14),
     fontWeight: '700',
-    color: '#000',
+    color: color.black,
     textAlign: 'center',
+    marginBottom: moderateScale(4),
   },
   box1ContainerText2: {
     fontSize: scale(12),
     fontWeight: '400',
-    color: 'gray',
+    color: color.blackOpacity50,
     textAlign: 'center',
+    marginBottom: moderateScale(4),
   },
 
   boxmainContainer2: {
@@ -190,8 +222,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: moderateScale(30),
     width: moderateScale(350),
-    height: moderateScale(250),
+    height: moderateScale(300),
     paddingVertical: moderateVerticalScale(10),
+    backgroundColor: color.white,
   },
   box2Container: {
     flexDirection: 'row',

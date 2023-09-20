@@ -1,6 +1,7 @@
 import {
   FlatList,
   Image,
+  SafeAreaView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -10,36 +11,39 @@ import React, {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
 
 import {moderateScale, scale} from 'react-native-size-matters';
+import color from '../constants/color';
 
 const WishList = () => {
   const items = useSelector(state => state?.wishList);
 
   return (
-    <View style={styles.container}>
-      <View style={{marginTop: moderateScale(20)}}>
-        <FlatList
-          keyExtractor={(item, index) => index.toString()}
-          contentContainerStyle={{paddingBottom: 20}}
-          showsVerticalScrollIndicator={false}
-          pagingEnabled
-          showsHorizontalScrollIndicator={false}
-          scrollEventThrottle={16}
-          data={items.data}
-          renderItem={({item, index}) => {
-            return (
-              <TouchableOpacity style={styles.item}>
-                <Image source={{uri: item.image}} style={styles.itemImage} />
-                <View>
-                  <Text style={styles.name}>{item.name}</Text>
-                  <Text style={styles.desc}>{item.desc}</Text>
-                  <Text style={styles.price}>INR.{item.price}</Text>
-                </View>
-              </TouchableOpacity>
-            );
-          }}
-        />
+    <SafeAreaView>
+      <View style={styles.container}>
+        <View style={{marginTop: moderateScale(20)}}>
+          <FlatList
+            keyExtractor={(item, index) => index.toString()}
+            contentContainerStyle={{paddingBottom: 20}}
+            showsVerticalScrollIndicator={false}
+            pagingEnabled
+            showsHorizontalScrollIndicator={false}
+            scrollEventThrottle={16}
+            data={items.data}
+            renderItem={({item, index}) => {
+              return (
+                <TouchableOpacity style={styles.item}>
+                  <Image source={{uri: item.image}} style={styles.itemImage} />
+                  <View>
+                    <Text style={styles.name}>{item.name}</Text>
+                    <Text style={styles.desc}>{item.desc}</Text>
+                    <Text style={styles.price}>INR.{item.price}</Text>
+                  </View>
+                </TouchableOpacity>
+              );
+            }}
+          />
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -53,7 +57,7 @@ const styles = StyleSheet.create({
   item: {
     width: moderateScale(350),
     height: moderateScale(100),
-    backgroundColor: '#eee',
+    backgroundColor: color.white,
     marginTop: moderateScale(5),
     alignSelf: 'center',
     flexDirection: 'row',
@@ -78,6 +82,6 @@ const styles = StyleSheet.create({
     fontSize: scale(18),
     fontWeight: '600',
     marginLeft: moderateScale(10),
-    color: 'green',
+    color: '#00ff96',
   },
 });
