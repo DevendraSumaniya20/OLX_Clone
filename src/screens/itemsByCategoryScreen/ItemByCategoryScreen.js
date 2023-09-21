@@ -1,6 +1,7 @@
 import {
   FlatList,
   Image,
+  SafeAreaView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -31,29 +32,31 @@ const ItemByCategoryScreen = () => {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <FlatList
-        keyExtractor={(item, index) => index.toString()}
-        contentContainerStyle={{paddingBottom: 20}}
-        showsVerticalScrollIndicator={false}
-        pagingEnabled
-        showsHorizontalScrollIndicator={false}
-        scrollEventThrottle={16}
-        data={itemList}
-        renderItem={({item, index}) => {
-          return (
-            <TouchableOpacity style={styles.item}>
-              <Image source={{uri: item.image}} style={styles.itemImage} />
-              <View>
-                <Text style={styles.name}>{item.name}</Text>
-                <Text style={styles.desc}>{item.desc}</Text>
-                <Text style={styles.price}>INR.{item.price}</Text>
-              </View>
-            </TouchableOpacity>
-          );
-        }}
-      />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
+        <FlatList
+          keyExtractor={(item, index) => index.toString()}
+          contentContainerStyle={{paddingBottom: 20}}
+          showsVerticalScrollIndicator={false}
+          pagingEnabled
+          showsHorizontalScrollIndicator={false}
+          scrollEventThrottle={16}
+          data={itemList}
+          renderItem={({item, index}) => {
+            return (
+              <TouchableOpacity style={styles.item}>
+                <Image source={{uri: item.image}} style={styles.itemImage} />
+                <View>
+                  <Text style={styles.name}>{item.name}</Text>
+                  <Text style={styles.desc}>{item.desc}</Text>
+                  <Text style={styles.price}>INR.{item.price}</Text>
+                </View>
+              </TouchableOpacity>
+            );
+          }}
+        />
+      </View>
+    </SafeAreaView>
   );
 };
 

@@ -29,7 +29,7 @@ const Search = () => {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <View style={styles.container}>
         <View style={styles.searchBox}>
           <TextInput
@@ -59,7 +59,11 @@ const Search = () => {
                   <Image source={{uri: item.image}} style={styles.itemImage} />
                   <View>
                     <Text style={styles.name}>{item.name}</Text>
-                    <Text style={styles.desc}>{item.desc}</Text>
+                    <Text style={styles.desc}>
+                      {item.desc.length > 25
+                        ? item.desc.slice(0, 25) + '...'
+                        : item.desc}
+                    </Text>
                     <Text style={styles.price}>INR.{item.price}</Text>
                   </View>
                 </TouchableOpacity>
@@ -124,9 +128,9 @@ const styles = StyleSheet.create({
   item: {
     width: moderateScale(350),
     height: moderateScale(100),
-    backgroundColor: '#eee',
+    backgroundColor: color.white,
     marginTop: moderateScale(5),
-    alignSelf: 'center',
+    alignItems: 'center',
     flexDirection: 'row',
     borderRadius: moderateScale(20),
     marginHorizontal: moderateScale(10),
@@ -135,15 +139,19 @@ const styles = StyleSheet.create({
     width: moderateScale(80),
     height: moderateScale(80),
     marginLeft: moderateScale(20),
+    borderRadius: moderateScale(8),
   },
   name: {
     fontSize: scale(18),
-    fontWeight: '600',
+    fontWeight: '800',
     marginLeft: moderateScale(10),
+    color: color.black,
   },
   desc: {
     fontSize: scale(16),
     marginLeft: moderateScale(10),
+    color: color.black,
+    fontWeight: '400',
   },
   price: {
     fontSize: scale(18),

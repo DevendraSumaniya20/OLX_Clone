@@ -71,30 +71,37 @@ const Home = () => {
           ]}
           renderItem={({item, index}) => {
             return (
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate(NavigationString.ITEMBYCATEGORY, {
-                    category: item.title,
-                  });
-                }}
+              <View
                 style={{
-                  width: moderateScale(120),
-                  height: moderateScale(95),
+                  width: moderateScale(100),
+                  margin: moderateScale(10),
+                  paddingHorizontal: moderateScale(6),
                   justifyContent: 'center',
-                  alignItems: 'center',
-                  backgroundColor: color.white,
-                  marginHorizontal: moderateScale(4),
-                  marginVertical: moderateScale(4),
-                  borderRadius: moderateScale(16),
+                  alignSelf: 'center',
                 }}>
-                <Image
-                  source={item.icon}
-                  style={styles.Imageicon}
-                  resizeMethod="auto"
-                  resizeMode="contain"
-                />
-                <Text style={styles.listText}>{item.title} </Text>
-              </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate(NavigationString.ITEMBYCATEGORY, {
+                      category: item.title,
+                    });
+                  }}
+                  style={{
+                    width: moderateScale(100),
+                    height: moderateScale(100),
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    backgroundColor: color.white,
+                    borderRadius: moderateScale(10),
+                  }}>
+                  <Image
+                    source={item.icon}
+                    style={styles.Imageicon}
+                    resizeMethod="auto"
+                    resizeMode="contain"
+                  />
+                  <Text style={styles.listText}>{item.title} </Text>
+                </TouchableOpacity>
+              </View>
             );
           }}
         />
@@ -124,9 +131,7 @@ const Home = () => {
                   style={styles.wishList}
                   onPress={() => {
                     dispatch(addToWishList(item));
-                    setIsLike(!true);
                   }}>
-                  {/* <Image source={ImagePath.Heart} style={styles.icon} /> */}
                   <AntDesign
                     name={!isLike ? 'hearto' : 'heart'}
                     size={25}
@@ -211,10 +216,13 @@ const styles = StyleSheet.create({
     fontSize: scale(18),
     fontWeight: '900',
     marginLeft: moderateScale(10),
+    color: color.black,
   },
   desc: {
     fontSize: scale(16),
     marginLeft: moderateScale(10),
+    color: color.black,
+    fontWeight: '500',
   },
   price: {
     fontSize: scale(18),
