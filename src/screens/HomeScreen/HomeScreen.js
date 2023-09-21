@@ -24,7 +24,11 @@ const HomeScreen = () => {
         {selectedTab == 0 ? (
           <Home />
         ) : selectedTab == 1 ? (
-          <Search />
+          <Search
+            onGotoHome={() => {
+              setSelectedTab(0);
+            }}
+          />
         ) : selectedTab == 2 ? (
           <Add
             onPost={() => {
@@ -32,7 +36,11 @@ const HomeScreen = () => {
             }}
           />
         ) : selectedTab == 3 ? (
-          <Wishlist />
+          <Wishlist
+            onGotoHome={() => {
+              setSelectedTab(0);
+            }}
+          />
         ) : (
           <User
             onGotoHome={() => {

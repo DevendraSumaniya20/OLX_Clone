@@ -16,9 +16,14 @@ import {launchCamera} from 'react-native-image-picker';
 import {useDispatch, useSelector} from 'react-redux';
 import {addPost} from '../redux/PostSlice';
 import color from '../constants/color';
+import CustomHeader from '../components/CustomHeader';
+import NavigationString from '../constants/NavigationString';
+import {useNavigation} from '@react-navigation/native';
 
 const Add = ({onPost}) => {
   const dispatch = useDispatch();
+
+  const navigation = useNavigation();
 
   const [photo, setPhoto] = useState({
     assets: [
@@ -95,9 +100,13 @@ const Add = ({onPost}) => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <SafeAreaView style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.title}>Add Post</Text>
-        </View>
+        <CustomHeader
+          paddingTop={moderateScale(15)}
+          label={'Add Post'}
+          onPress={() => {
+            navigation.navigate(NavigationString.HOME);
+          }}
+        />
         <TouchableOpacity
           style={styles.imageView}
           onPress={() => {

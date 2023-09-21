@@ -25,15 +25,10 @@ const Navigation = () => {
           component={HomeScreen}
           options={{headerShown: false}}
         />
-        {/* <Stack.Screen
-          name={NavigationString.HOMETAB}
-          component={Home}
-          options={{headerShown: false}}
-        /> */}
         <Stack.Screen
           name={NavigationString.ITEMBYCATEGORY}
           component={ItemByCategoryScreen}
-          options={{headerShown: true}}
+          options={{headerShown: false}}
         />
       </Stack.Navigator>
     </NavigationContainer>

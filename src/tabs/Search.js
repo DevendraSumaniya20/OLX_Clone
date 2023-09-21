@@ -10,12 +10,14 @@ import {
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
-import {useRoute} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {moderateScale, scale} from 'react-native-size-matters';
 import ImagePath from '../constants/ImagePath';
 import color from '../constants/color';
+import CustomHeader from '../components/CustomHeader';
 
-const Search = () => {
+const Search = ({onGotoHome}) => {
+  const navigation = useNavigation();
   const items = useSelector(state => state?.post);
   const [text, setText] = useState('');
   const [itemList, setItemList] = useState(items.data);
@@ -28,8 +30,19 @@ const Search = () => {
     setItemList(temp);
   };
 
+  const goToHomeScreen = () => {
+    onGotoHome();
+  };
+
   return (
     <SafeAreaView style={styles.container}>
+      <CustomHeader
+        paddingTop={moderateScale(15)}
+        label={'Search'}
+        onPress={() => {
+          goToHomeScreen();
+        }}
+      />
       <View style={styles.container}>
         <View style={styles.searchBox}>
           <TextInput

@@ -12,12 +12,27 @@ import {useSelector} from 'react-redux';
 
 import {moderateScale, scale} from 'react-native-size-matters';
 import color from '../constants/color';
+import {useNavigation} from '@react-navigation/native';
+import CustomHeader from '../components/CustomHeader';
+import NavigationString from '../constants/NavigationString';
 
-const WishList = () => {
+const WishList = ({onGotoHome}) => {
   const items = useSelector(state => state?.wishList);
+  const navigation = useNavigation();
+
+  const goToHomeScreen = () => {
+    onGotoHome();
+  };
 
   return (
     <SafeAreaView style={styles.container}>
+      <CustomHeader
+        paddingTop={moderateScale(15)}
+        label={'Your WishList'}
+        onPress={() => {
+          goToHomeScreen();
+        }}
+      />
       <View style={styles.Subcontainer}>
         <FlatList
           keyExtractor={(item, index) => index.toString()}

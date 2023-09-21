@@ -14,8 +14,13 @@ import {
   scale,
 } from 'react-native-size-matters';
 import color from '../constants/color';
+import {useNavigation} from '@react-navigation/native';
+import CustomHeader from '../components/CustomHeader';
+import NavigationString from '../constants/NavigationString';
 
 const User = ({onGotoHome, onGotoSearch, onGotoWishList}) => {
+  const navigation = useNavigation();
+
   const goToHomeScreen = () => {
     onGotoHome();
   };
@@ -30,6 +35,13 @@ const User = ({onGotoHome, onGotoSearch, onGotoWishList}) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <CustomHeader
+        paddingTop={moderateScale(15)}
+        label={'Profile'}
+        onPress={() => {
+          onGotoHome();
+        }}
+      />
       <View style={styles.container}>
         <View style={styles.imageContainer}>
           <Image source={ImagePath.ProfilePicture} style={styles.imageStyle} />
@@ -157,10 +169,10 @@ const styles = StyleSheet.create({
   imageStyle: {
     height: moderateScale(150),
     width: moderateScale(150),
-    marginTop: moderateScale(50),
+    marginTop: moderateScale(10),
     borderRadius: moderateScale(100),
-    borderWidth: 5,
-    borderColor: '#e20c75',
+    borderWidth: moderateScale(5),
+    borderColor: '#a30500',
   },
   imageContainer: {
     alignItems: 'center',
@@ -179,13 +191,14 @@ const styles = StyleSheet.create({
     borderBottomColor: '#000',
     borderBottomWidth: StyleSheet.hairlineWidth,
     width: moderateScale(350),
-    marginTop: moderateScale(20),
+    marginTop: moderateScale(10),
   },
   boxmainContainer: {
     flexDirection: 'row',
-    width: '100%',
-    justifyContent: 'space-around',
-    marginTop: moderateScale(16),
+    width: moderateScale(400),
+    justifyContent: 'space-evenly',
+    marginTop: moderateScale(12),
+    alignItems: 'center',
   },
   box1Container: {
     alignItems: 'center',
@@ -220,8 +233,8 @@ const styles = StyleSheet.create({
     borderRadius: moderateScale(9),
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: moderateScale(30),
-    width: moderateScale(350),
+    marginTop: moderateScale(20),
+    width: moderateScale(340),
     height: moderateScale(300),
     paddingVertical: moderateVerticalScale(10),
     backgroundColor: color.white,
